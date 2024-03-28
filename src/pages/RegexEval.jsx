@@ -1,11 +1,19 @@
 
 import { useState } from 'react'
 import './regex-eval.css'
-import { operateRegex } from '../services/regex-eval-service';
+import { operateRegex } from '../services/regex-eval-service'
 export default function RegexEval (){
-    const [input, setInput] = useState("");
-    const handleClick = () => {
-        operateRegex(input)
+    const [input, setInput] = useState("")
+    const [postfix, setPostfix] = useState("")
+    const handleClick = async () => {
+        try {
+            const response = await operateRegex(input);
+            setPostfix(response.Postfix);
+            // Assuming other responses are handled similarly
+        } catch (error) {
+            console.error('Error:', error);
+            // Handle errors here
+        }
     }
     return (
     <>
@@ -23,6 +31,7 @@ export default function RegexEval (){
         <div className="graph-container">
           <h2>Postfix:</h2>
           <h3 id="postfix" name="postfix">
+            {postfix}
           </h3>
         </div>
         <div className="graph-container">
