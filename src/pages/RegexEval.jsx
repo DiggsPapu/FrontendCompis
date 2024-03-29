@@ -5,6 +5,7 @@ import { operateRegex } from '../services/regex-eval-service'
 
 export default function RegexEval() {
     const [input, setInput] = useState("")
+    const [checkInput, setCheckInput] = useState("")
     const [postfix, setPostfix] = useState("")
     const [NFA, setNFA] = useState("digraph fsm {rankdir=LR;node [shape = point]; INITIAL_STATE;node [shape = doublecircle]; q1;node [shape = circle];INITIAL_STATE -> q0;q0 -> q1 [label=ε];}")
     const [NFA_DFA, setNFA_DFA] = useState("digraph fsm {rankdir=LR;node [shape = point]; INITIAL_STATE;node [shape = doublecircle]; q1;node [shape = circle];INITIAL_STATE -> q0;q0 -> q1 [label=ε];}")
@@ -25,7 +26,15 @@ export default function RegexEval() {
         } catch (error) {
             console.error('Error:', error)
         }
-    };
+    }
+    const clickSimulate = async () => {
+        try {
+            const response = await operateRegex(input)
+            console.log(response)
+        } catch (error) {
+            console.error('Error:', error)
+        }
+    }
     return (
         <>
             <div className="grid-container">
@@ -48,16 +57,13 @@ export default function RegexEval() {
                 <div className="graph-container">
                   <h2>Enter a simulate chain:</h2>
                   <input
-                  type="text"
-                  placeholder="Enter a chain"
-                  id="validar"/>
-                  {/* <input
-                  type="text"
-                  placeholder="ingrese una cadena para la simulacion"
-                  id="validar"
-                  value={checkInput}
-                  onChange={(e) => setCheckInput(e.target.value)} />
-                  <button id="enter2" onClick={clickSimulate}>aceptar</button> */}
+                    type="text"
+                    placeholder="ingrese una cadena para la simulacion"
+                    id="validar"
+                    value={checkInput}
+                    onChange={(e) => setCheckInput(e.target.value)}
+                    />
+                <button id="enter2" onClick={clickSimulate}>aceptar</button>
                 </div>
                 <div className="graph-container">
                     <h2>NFA:</h2>
