@@ -9,7 +9,7 @@ export async function operateRegex(input) {
 }
 export async function simulateRegex(input) {
     try {
-        const response = await axios.post('http://localhost:4000/simulateRegex'+input, {input: input})
+        const response = await axios.post('http://localhost:4000/simulateRegex', {"input": input})
         return response.data
     } catch (error) {
         throw error;
