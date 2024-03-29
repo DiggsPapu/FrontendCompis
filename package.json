@@ -10,10 +10,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.15.14",
+    "@mui/styled-engine": "^5.15.14",
     "axios": "^1.6.8",
     "graphviz-react": "^1.2.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-dropzone": "^14.2.3",
     "react-graphviz": "^0.7.0"
   },
   "devDependencies": {
