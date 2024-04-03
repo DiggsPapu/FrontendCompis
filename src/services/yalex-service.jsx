@@ -16,3 +16,12 @@ export async function yalexDFA() {
         throw error;
     }
 }
+// Function to get the scanner file generated
+export async function getScanner() {
+    try {
+        const response = await axios.get('http://localhost:4000/analyzeYalex/Scanner')
+        return response
+    } catch (error) {
+        throw error;
+    }
+}

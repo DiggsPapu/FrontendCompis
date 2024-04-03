@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { Paper, Typography } from '@mui/material'
-import { yalexAnalyzer, yalexDFA } from '../services/yalex-service'
+import { getScanner, yalexAnalyzer, yalexDFA } from '../services/yalex-service'
+import styles from './file-drop.module.css'; 
 
 function FileDrop() {
   const [acceptedFiles, setAcceptedFiles] = useState([])
@@ -35,6 +36,8 @@ function FileDrop() {
     setAst(response)
     response = await yalexDFA()
     setDfa(response)
+    response = await getScanner()
+    console.log(response)
   }
   const { getRootProps, getInputProps } = useDropzone({
     accept: '.yal',
@@ -71,7 +74,7 @@ function FileDrop() {
       <div>
         <h2>AST</h2>
         {ast ? (
-          <div dangerouslySetInnerHTML={{ __html: ast }} /> // Render the SVG using dangerouslySetInnerHTML
+          <div className={styles.svgImages} dangerouslySetInnerHTML={{ __html: ast }} /> // Render the SVG using dangerouslySetInnerHTML
         ) : (
           <p>Loading AST...</p>
         )}
@@ -79,7 +82,7 @@ function FileDrop() {
       <div>
         <h2>DFA</h2>
         {dfa ? (
-          <div dangerouslySetInnerHTML={{ __html: dfa }} /> // Render the SVG using dangerouslySetInnerHTML
+          <div className={styles.svgImages} dangerouslySetInnerHTML={{ __html: dfa }} /> // Render the SVG using dangerouslySetInnerHTML
         ) : (
           <p>Loading DFA...</p>
         )}
