@@ -37,7 +37,12 @@ function FileDrop() {
     response = await yalexDFA()
     setDfa(response)
     response = await getScanner()
-    console.log(response)
+    const url = window.URL.createObjectURL(new Blob([response]));
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', 'Scanner.js');
+    document.body.appendChild(link);
+    link.click();
   }
   const { getRootProps, getInputProps } = useDropzone({
     accept: '.yal',

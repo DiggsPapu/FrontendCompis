@@ -20,7 +20,8 @@ export async function yalexDFA() {
 export async function getScanner() {
     try {
         const response = await axios.get('http://localhost:4000/analyzeYalex/Scanner')
-        return response
+        console.log(response.data)
+        return response.data
     } catch (error) {
         throw error;
     }
