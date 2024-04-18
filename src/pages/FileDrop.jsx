@@ -2,27 +2,25 @@ import React, { useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { Paper, Typography } from '@mui/material'
 import { getScanner, yalexAnalyzer, yalexDFA } from '../services/yalex-service'
-import styles from './file-drop.module.css'; 
+import styles from './file-drop.module.css'
 
 function FileDrop() {
-  const [acceptedFiles, setAcceptedFiles] = useState([])
-  const [combinedContent, setCombinedContent] = useState('')
-  const [ast, setAst] = useState(null);
-  const [dfa, setDfa] = useState(null);
-  const readFileContent = (file) => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        resolve(event.target.result);
-      };
+  const [acceptedFiles] = useState([])
+  const [combinedContent] = useState('')
+  const [ast, setAst] = useState(null)
+  const [dfa, setDfa] = useState(null)
+  const readFileContent = (file) => new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.onload = (event) => {
+      resolve(event.target.result)
+    }
 
-      reader.onerror = (error) => {
-        reject(error);
-      };
+    reader.onerror = (error) => {
+      reject(error)
+    }
 
-      reader.readAsText(file);
-    });
-  };
+    reader.readAsText(file)
+  })
 
   const handleDrop = async (files) => {
     const filesWithContent = []
@@ -30,19 +28,19 @@ function FileDrop() {
     for (const file of files) {
       const fileContent = await readFileContent(file)
       filesWithContent.push({ ...file, content: fileContent })
-      content += fileContent + '\n'
+      content += `${fileContent}\n`
     }
     let response = await yalexAnalyzer(content)
     setAst(response)
     response = await yalexDFA()
     setDfa(response)
     response = await getScanner()
-    const url = window.URL.createObjectURL(new Blob([response]));
-    const link = document.createElement('a');
-    link.href = url;
-    link.setAttribute('download', 'Scanner.js');
-    document.body.appendChild(link);
-    link.click();
+    const url = window.URL.createObjectURL(new Blob([response]))
+    const link = document.createElement('a')
+    link.href = url
+    link.setAttribute('download', 'Scanner.js')
+    document.body.appendChild(link)
+    link.click()
   }
   const { getRootProps, getInputProps } = useDropzone({
     accept: '.yal',
@@ -79,7 +77,7 @@ function FileDrop() {
       <div>
         <h2>AST</h2>
         {ast ? (
-          <div className={styles.svgImages} dangerouslySetInnerHTML={{ __html: ast }} /> // Render the SVG using dangerouslySetInnerHTML
+          <div className={styles.svgImages} dangerouslySetInnerHTML={{ __html: ast }} />
         ) : (
           <p>Loading AST...</p>
         )}
@@ -87,7 +85,7 @@ function FileDrop() {
       <div>
         <h2>DFA</h2>
         {dfa ? (
-          <div className={styles.svgImages} dangerouslySetInnerHTML={{ __html: dfa }} /> // Render the SVG using dangerouslySetInnerHTML
+          <div className={styles.svgImages} dangerouslySetInnerHTML={{ __html: dfa }} />
         ) : (
           <p>Loading DFA...</p>
         )}

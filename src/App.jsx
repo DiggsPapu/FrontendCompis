@@ -1,12 +1,12 @@
-import FileDrop from "./pages/FileDrop"
-import RegexEval from "./pages/RegexEval"
-
+import React from 'react'
+import FileDrop from './pages/FileDrop'
+import RegexEval from './pages/RegexEval'
 
 function App() {
   return (
     <>
-    <RegexEval/>
-    <FileDrop/>
+      <RegexEval />
+      <FileDrop />
     </>
   )
 }
