@@ -1,9 +1,9 @@
 import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { Drawer } from '@mui/material'
 import RegexEval from './pages/RegexEval'
 import ResponsiveAppBar from './components/ResponsiveAppBar'
 import Start from './pages/Start'
+import YalexProcessing from './pages/YalexProcessing'
 
 function App() {
   return (
@@ -19,6 +19,11 @@ function App() {
           path="/"
           exact
           element={(<Start />)}
+        />
+        <Route
+          path="/YalexProcessing"
+          exact
+          element={(<YalexProcessing />)}
         />
       </Routes>
     </BrowserRouter>
