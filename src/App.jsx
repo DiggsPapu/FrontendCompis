@@ -1,5 +1,5 @@
 import React from 'react'
-import FileDrop from './pages/FileDrop'
+import FileDrop from './components/FileDrop'
 import RegexEval from './pages/RegexEval'
 
 function App() {

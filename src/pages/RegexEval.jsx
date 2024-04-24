@@ -1,6 +1,8 @@
 import { React, useState } from 'react'
 import './regex-eval.css'
 import { Graphviz } from 'graphviz-react'
+import { Button, TextField } from '@mui/material'
+import style from '../fonts/robot.module.css'
 import { operateRegex, simulateRegex } from '../services/regex-eval-service'
 
 export default function RegexEval() {
@@ -69,79 +71,60 @@ export default function RegexEval() {
     }
   }
   return (
-    <div className="grid-container">
-      <div className="graph-container">
-        <h2>Enter a regex:</h2>
-        <input
-          type="text"
-          placeholder="enter a regex"
-          id="regex-input"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-        />
-        <button type="submit" onClick={handleClick}>Accept</button>
+    <>
+      <h1 className={style.robotoBold}>Regex Evaluation</h1>
+      <div className="grid-container">
+        <div className="graph-container">
+          <h2 className={style.robotoMedium}>Enter a regex:</h2>
+          <TextField id="standard-basic" label="Regex Chain" variant="standard" placeholder="Enter a regex" value={input} onChange={(e) => setInput(e.target.value)} />
+          <Button variant="outlined" color="secondary" size="large" style={{ width: '50%', fontSize: '100%' }} onClick={handleClick}>Accept</Button>
+        </div>
+        <div className="graph-container">
+          <h2 className={style.robotoMedium}>Postfix:</h2>
+          <h3 className={style.robotoRegular} id="postfix" name="postfix">
+            {postfix}
+          </h3>
+        </div>
+        <div className="graph-container">
+          <h2 className={style.robotoMedium}>Enter a simulation chain:</h2>
+          <TextField id="standard-basic" label="Simulation Chain" variant="standard" placeholder="Enter a chain" value={checkInput} onChange={(e) => setCheckInput(e.target.value)} />
+          <Button variant="outlined" size="large" style={{ width: '50%', fontSize: '100%' }} onClick={clickSimulate}>Accept</Button>
+        </div>
+        <div className="graph-container">
+          <h2 className={style.robotoMedium}>NFA:</h2>
+          <Graphviz dot={NFA} />
+          <p className={style.robotoThin}>Simulation:</p>
+          <p className={style.robotoThinItalic}>{outputNfaS}</p>
+        </div>
+        <div className="graph-container">
+          <h2 className={style.robotoMedium}>DFA:</h2>
+          <Graphviz dot={NFA_DFA} />
+          <p className={style.robotoThin}>Simulation:</p>
+          <p className={style.robotoThinItalic}>{outputDfaS}</p>
+        </div>
+        <div className="graph-container">
+          <h2 className={style.robotoMedium}>Min DFA:</h2>
+          <Graphviz dot={nfaDfaMin} />
+          <p className={style.robotoThin}>Simulation:</p>
+          <p className={style.robotoThinItalic}>{outputDfamin}</p>
+        </div>
+        <div className="graph-container">
+          <h2 className={style.robotoMedium}>Syntax Tree:</h2>
+          <Graphviz dot={AST} />
+        </div>
+        <div className="graph-container">
+          <h2 className={style.robotoMedium}>DIRECT DFA:</h2>
+          <Graphviz dot={DirectDFA} />
+          <p className={style.robotoThin}>Simulation:</p>
+          <p className={style.robotoThinItalic}>{outputDfaD}</p>
+        </div>
+        <div className="graph-container">
+          <h2 className={style.robotoMedium}>Min DIRECT DFA:</h2>
+          <Graphviz dot={directDfaMin} />
+          <p className={style.robotoThin}>Simulation:</p>
+          <p className={style.robotoThinItalic}>{outputDfaDmin}</p>
+        </div>
       </div>
-      <div className="graph-container">
-        <h2>Postfix:</h2>
-        <h3 id="postfix" name="postfix">
-          {postfix}
-        </h3>
-      </div>
-      <div className="graph-container">
-        <h2>Enter a simulate chain:</h2>
-        <input
-          type="text"
-          placeholder="ingrese una cadena para la simulacion"
-          id="validar"
-          value={checkInput}
-          onChange={(e) => setCheckInput(e.target.value)}
-        />
-        <button id="enter2" type="submit" onClick={clickSimulate}>aceptar</button>
-      </div>
-      <div className="graph-container">
-        <h2>NFA:</h2>
-        <Graphviz dot={NFA} />
-        <p>
-          Simulation:
-          {outputNfaS}
-        </p>
-      </div>
-      <div className="graph-container">
-        <h2>DFA:</h2>
-        <Graphviz dot={NFA_DFA} />
-        <p>
-          Simulation:
-          {outputDfaS}
-        </p>
-      </div>
-      <div className="graph-container">
-        <h2>Min DFA:</h2>
-        <Graphviz dot={nfaDfaMin} />
-        <p>
-          Simulation:
-          {outputDfamin}
-        </p>
-      </div>
-      <div className="graph-container">
-        <h2>Syntax Tree:</h2>
-        <Graphviz dot={AST} />
-      </div>
-      <div className="graph-container">
-        <h2>DIRECT DFA:</h2>
-        <Graphviz dot={DirectDFA} />
-        <p>
-          Simulation:
-          {outputDfaD}
-        </p>
-      </div>
-      <div className="graph-container">
-        <h2>Min DIRECT DFA:</h2>
-        <Graphviz dot={directDfaMin} />
-        <p>
-          Simulation:
-          {outputDfaDmin}
-        </p>
-      </div>
-    </div>
+    </>
   )
 }
