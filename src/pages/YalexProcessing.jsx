@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import FileDrop2 from '../components/FileDrop2'
+import FileDrop from '../components/FileDrop'
 import { getScanner, yalexAnalyzer, yalexDFA } from '../services/yalex-service'
 import styles from './yalex-processing.module.css'
 
@@ -27,7 +27,7 @@ function YalexProcessing() {
   }, [content])
   return (
     <>
-      <FileDrop2 content={content} setContent={setContent} />
+      <FileDrop content={content} setContent={setContent} />
       <div>
         <h2>AST</h2>
         <p>
