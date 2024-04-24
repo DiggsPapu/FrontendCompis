@@ -20,7 +20,9 @@ function ResponsiveAppBar() {
           <Link to="/YalexProcessing">
             <Button color="warning">YalexProcessing</Button>
           </Link>
-          <Button color="warning">YaparProcessing</Button>
+          <Link to="/YaparProcessing">
+            <Button color="warning">YaparProcessing</Button>
+          </Link>
         </Toolbar>
       </Container>
     </AppBar>

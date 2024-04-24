@@ -4,6 +4,7 @@ import RegexEval from './pages/RegexEval'
 import ResponsiveAppBar from './components/ResponsiveAppBar'
 import Start from './pages/Start'
 import YalexProcessing from './pages/YalexProcessing'
+import YaparProcessing from './pages/YaparProcessing'
 
 function App() {
   return (
@@ -24,6 +25,11 @@ function App() {
           path="/YalexProcessing"
           exact
           element={(<YalexProcessing />)}
+        />
+        <Route
+          path="/YaparProcessing"
+          exact
+          element={(<YaparProcessing />)}
         />
       </Routes>
     </BrowserRouter>
