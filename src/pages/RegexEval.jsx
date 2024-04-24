@@ -24,18 +24,17 @@ export default function RegexEval() {
       setPostfix(response.Postfix)
       setNFA(response.NFA)
       setNfaDfa(response.NFA_DFA)
-      setNfaDfaMin(response.nfaDfaMin)
+      setNfaDfaMin(response.NFA_DFA_Min)
       setAST(response.AST)
       setDirectDFA(response.DirectDFA)
-      setDirectDfaMin(response.directDfaMin)
+      setDirectDfaMin(response.DirectDFA_Min)
     } catch (error) {
       console.error('Error:', error)
     }
   }
   const clickSimulate = async () => {
     try {
-      const response = await simulateRegex(input)
-      console.log(response)
+      const response = await simulateRegex(checkInput)
       if (response.NFA[0][0]) {
         setOutputNFAS(`Yes, time: ${response.NFA[1].toString()} seconds`)
       } else {
@@ -48,10 +47,10 @@ export default function RegexEval() {
         setOutputDFAS(`No, time: ${response.NFA_DFA[1].toString()} seconds`)
       }
 
-      if (response.nfaDfaMin[0][0]) {
-        setOutputDFAmin(`Yes, time: ${response.nfaDfaMin[1].toString()} seconds`)
+      if (response.NFA_DFA_Min[0][0]) {
+        setOutputDFAmin(`Yes, time: ${response.NFA_DFA_Min[1].toString()} seconds`)
       } else {
-        setOutputDFAmin(`No, time: ${response.nfaDfaMin[1].toString()} seconds`)
+        setOutputDFAmin(`No, time: ${response.NFA_DFA_Min[1].toString()} seconds`)
       }
 
       if (response.DirectDFA[0][0]) {
@@ -60,10 +59,10 @@ export default function RegexEval() {
         setOutputDFAD(`No, time: ${response.DirectDFA[1].toString()} seconds`)
       }
 
-      if (response.directDfaMin[0][0]) {
-        setOutputDFADmin(`Yes, time: ${response.directDfaMin[1].toString()} seconds`)
+      if (response.DirectDFA_Min[0][0]) {
+        setOutputDFADmin(`Yes, time: ${response.DirectDFA_Min[1].toString()} seconds`)
       } else {
-        setOutputDFADmin(`No, time: ${response.directDfaMin[1].toString()} seconds`)
+        setOutputDFADmin(`No, time: ${response.DirectDFA_Min[1].toString()} seconds`)
       }
     } catch (error) {
       console.error('Error:', error)
