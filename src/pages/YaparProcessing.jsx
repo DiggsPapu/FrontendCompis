@@ -23,12 +23,12 @@ export default function YaparProcessing() {
       <FileDrop content={yalexContent} setContent={setYalContent} />
       <h2 className={font.robotoMedium}>Enter yapar:</h2>
       <FileDrop content={yaparContent} setContent={setYapContent} />
-      <h2>AUTOMATHON</h2>
+      <h2 className={font.robotoMedium}>Automathon</h2>
       <p>
         {automathon ? (
           <div className={styles.svgImages} dangerouslySetInnerHTML={{ __html: automathon }} />
         ) : (
-          <p>Loading AUTOMATHON...</p>
+          <p className={font.robotoContent}>Loading Automathon...</p>
         )}
       </p>
     </>
