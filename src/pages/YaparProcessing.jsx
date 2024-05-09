@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { TextField } from '@mui/material'
+import { Button, TextField } from '@mui/material'
+import './regex-eval.css'
 import FileDrop from '../components/FileDrop'
 import font from '../fonts/robot.module.css'
 import { evaluateChain, postFiles } from '../services/yapar-service'
@@ -18,23 +19,29 @@ export default function YaparProcessing() {
     }
     fetchData()
   }, [yalexContent, yaparContent])
-  useEffect(() => {
-    const fetchRespose = async () => {
-      if (input) {
-        await evaluateChain(input)
-      }
+  const clickSimulate = async () => {
+    if (input && yalexContent && yaparContent) {
+      await evaluateChain(input)
     }
-    fetchRespose()
-  }, [input])
+  }
   return (
     <>
       <h1 className={font.robotoBold}>Yapar Processing</h1>
-      <h2 className={font.robotoMedium}>Enter yalex:</h2>
-      <FileDrop content={yalexContent} setContent={setYalContent} />
-      <h2 className={font.robotoMedium}>Enter yapar:</h2>
-      <FileDrop content={yaparContent} setContent={setYapContent} />
-      <h2 className={font.robotoMedium}>Enter a chain:</h2>
-      <TextField id="standard-basic" label="Chain" variant="standard" placeholder="Enter a chain" value={input} onChange={(e) => setInput(e.target.value)} />
+      <div className="grid-container">
+        <div className="graph-container">
+          <h2 className={font.robotoMedium}>Enter yalex:</h2>
+          <FileDrop content={yalexContent} setContent={setYalContent} />
+        </div>
+        <div className="graph-container">
+          <h2 className={font.robotoMedium}>Enter yapar:</h2>
+          <FileDrop content={yaparContent} setContent={setYapContent} />
+        </div>
+        <div className="graph-container">
+          <h2 className={font.robotoMedium}>Enter a chain:</h2>
+          <TextField id="standard-basic" label="Chain" variant="standard" placeholder="Enter a chain" value={input} onChange={(e) => setInput(e.target.value)} />
+          <Button variant="outlined" color="secondary" size="large" style={{ width: '50%', fontSize: '100%' }} onClick={clickSimulate}>Accept</Button>
+        </div>
+      </div>
       <h2 className={font.robotoMedium}>Automathon</h2>
       <p>
         {automathon ? (
