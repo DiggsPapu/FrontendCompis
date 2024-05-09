@@ -26,7 +26,6 @@ export default function FileDrop(props) {
     })
   }
   const { getRootProps, getInputProps } = useDropzone({
-    accept: '.yal',
     onDrop: handleDrop,
   })
   return (
@@ -34,7 +33,7 @@ export default function FileDrop(props) {
       <Paper elevation={3} {...getRootProps()} className="dropzone">
         <input {...getInputProps()} />
         <Typography variant="h6" gutterBottom>
-          Drop yal files here
+          Drop files here
         </Typography>
       </Paper>
       <Typography>

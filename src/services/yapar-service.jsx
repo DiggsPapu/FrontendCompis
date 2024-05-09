@@ -5,7 +5,7 @@ export async function postFiles(yalexContent, yaparContent) {
   return response.data
 }
 
-export async function getAutomathon() {
-  const response = await axios.get('http://localhost:5960/analyzeYapar/getAutomathon')
+export async function evaluateChain(input) {
+  const response = await axios.post('http://localhost:5960/analyzeYapar/evaluateChain', { input })
   return response.data
 }
