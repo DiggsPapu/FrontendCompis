@@ -3,7 +3,7 @@ import { Button, TextField } from '@mui/material'
 import './regex-eval.css'
 import FileDrop from '../components/FileDrop'
 import font from '../fonts/robot.module.css'
-import { evaluateChain, postFiles } from '../services/yapar-service'
+import { evaluateChain, postFiles, getParsingTable } from '../services/yapar-service'
 import styles from './yalex-processing.module.css'
 
 export default function YaparProcessing() {
@@ -11,10 +11,12 @@ export default function YaparProcessing() {
   const [yaparContent, setYapContent] = useState('')
   const [input, setInput] = useState('')
   const [automathon, setAutomathon] = useState(null)
+  const [parsingTable, setParsingTable] = useState(null)
   useEffect(() => {
     const fetchData = async () => {
       if (yalexContent && yaparContent) {
         setAutomathon(await postFiles(yalexContent, yaparContent))
+        setParsingTable(await getParsingTable())
       }
     }
     fetchData()
@@ -48,6 +50,14 @@ export default function YaparProcessing() {
           <div className={styles.svgImages} dangerouslySetInnerHTML={{ __html: automathon }} />
         ) : (
           <p className={font.robotoContent}>Loading Automathon...</p>
+        )}
+      </p>
+      <h2 className={font.robotoMedium}>Parsing Table</h2>
+      <p>
+        {parsingTable ? (
+          <div className={styles.svgImages} dangerouslySetInnerHTML={{ __html: parsingTable }} />
+        ) : (
+          <p className={font.robotoContent}>Loading parsing table...</p>
         )}
       </p>
     </>
