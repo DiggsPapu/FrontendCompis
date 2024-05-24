@@ -73,6 +73,51 @@ export default function RegexEval() {
   return (
     <>
       <h1 className={style.robotoBold}>Regex Evaluation</h1>
+      <h2 className={style.robotoBold}>What is this about?</h2>
+      <p className={style.robotoMedium}>
+        This part is about generating an automathons that can represent a regex given,
+        all those automathons are developed with a library called Graphviz. The first
+        row of automathons are produced with the Thompson Algorithm, first producing an
+        Non Deterministic Automathon, then converting it to a Deterministic Automathon
+        and finally minimizing that DFA to the minimum quantity of states. Also, applied
+        the chance to simulating that automathon so enter a simulation chain and getting
+        if the chain belongs to the language represented by that automathon. If it
+        achieves an accepting state it does belong to that language, if not, then it
+        never gets into an accepting state.
+      </p>
+      <h2 className={style.robotoBold}>Rules</h2>
+      <p className={style.robotoMedium}>
+        <ul>
+          <li>
+            &quot;*&quot; means expected 0 or more times, for example if i write
+            <em>(a)*</em>
+            {' '}
+            it means that I am expecting an a showing up zero or more times,
+            so this &quot;
+            <em>aaaaaaaaaaaaaaa</em>
+            &quot; chain would be correct
+            and this chain &quot;&quot; also would be correct.
+          </li>
+          <li>
+            &quot;+&quot; means expected 1 or more times, for example if i write
+            <em>(a)+</em>
+            {' '}
+            it means that I am expecting an a showing up once or more times,
+            so this &quot;
+            <em>aaaaaaaaaaaaaaa</em>
+            &quot; chain would be correct
+            and this chain &quot;a&quot; also would be correct.
+          </li>
+          <li>
+            &quot;?&quot; means expected zero or once, for example if i write
+            <em>(a)?</em>
+            so this &quot;
+            <em>a</em>
+            &quot; chain would be correct
+            and this chain &quot;&quot; also would be correct.
+          </li>
+        </ul>
+      </p>
       <div className="grid-container">
         <div className="graph-container">
           <h2 className={style.robotoMedium}>Enter a regex:</h2>
