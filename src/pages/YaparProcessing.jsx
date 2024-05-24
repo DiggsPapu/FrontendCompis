@@ -12,6 +12,7 @@ export default function YaparProcessing() {
   const [input, setInput] = useState('')
   const [automathon, setAutomathon] = useState(null)
   const [parsingTable, setParsingTable] = useState(null)
+  const [parsing, setParsing] = useState(null)
   useEffect(() => {
     const fetchData = async () => {
       if (yalexContent && yaparContent) {
@@ -23,7 +24,7 @@ export default function YaparProcessing() {
   }, [yalexContent, yaparContent])
   const clickSimulate = async () => {
     if (input && yalexContent && yaparContent) {
-      await evaluateChain(input)
+      setParsing(await evaluateChain(input))
     }
   }
   return (
@@ -38,26 +39,40 @@ export default function YaparProcessing() {
           <h2 className={font.robotoMedium}>Enter yapar:</h2>
           <FileDrop content={yaparContent} setContent={setYapContent} />
         </div>
-        <div className="graph-container">
-          <h2 className={font.robotoMedium}>Enter a chain:</h2>
-          <TextField id="standard-basic" label="Chain" variant="standard" placeholder="Enter a chain" value={input} onChange={(e) => setInput(e.target.value)} />
-          <Button variant="outlined" color="secondary" size="large" style={{ width: '50%', fontSize: '100%' }} onClick={clickSimulate}>Accept</Button>
-        </div>
       </div>
       <h2 className={font.robotoMedium}>Automathon</h2>
-      <p>
+      <p className={font.robotoMedium}>
         {automathon ? (
-          <div className={styles.svgImages} dangerouslySetInnerHTML={{ __html: automathon }} />
+          <div
+            className={styles.svgImages}
+            dangerouslySetInnerHTML={{ __html: automathon }}
+          />
         ) : (
           <p className={font.robotoContent}>Loading Automathon...</p>
         )}
       </p>
-      <h2 className={font.robotoMedium}>Parsing Table</h2>
+      <h2 className={font.robotoMedium}>Parsing Table SLR</h2>
       <p>
         {parsingTable ? (
           <div className={styles.svgImages} dangerouslySetInnerHTML={{ __html: parsingTable }} />
         ) : (
           <p className={font.robotoContent}>Loading parsing table...</p>
+        )}
+      </p>
+      <h2 className={font.robotoMedium}>Enter a chain:</h2>
+      <TextField id="standard-basic" label="Chain" variant="standard" placeholder="Enter a chain" value={input} onChange={(e) => setInput(e.target.value)} />
+      <Button variant="outlined" color="secondary" size="large" style={{ width: '50%', fontSize: '100%' }} onClick={clickSimulate}>Accept</Button>
+      <p>
+        {parsing ? (
+          <div style={{ width: '100%' }}>
+            <div
+              className={font.robotoMedium}
+              dangerouslySetInnerHTML={{ __html: parsing.response }}
+            />
+            {parsing.accept ? `Successfully compiled ${input}` : 'Unsuccessfull'}
+          </div>
+        ) : (
+          <p className={font.robotoContent}>Loading parsing...</p>
         )}
       </p>
     </>
