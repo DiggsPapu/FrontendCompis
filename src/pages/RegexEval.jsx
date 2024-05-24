@@ -116,6 +116,11 @@ export default function RegexEval() {
             &quot; chain would be correct
             and this chain &quot;&quot; also would be correct.
           </li>
+          <li>
+            &quot;|&quot; means &quot;or&quot;, for example if i write
+            <em>(a|b)</em>
+            would mean a or b.
+          </li>
         </ul>
       </p>
       <div className="grid-container">
