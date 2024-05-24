@@ -11,16 +11,16 @@ function ResponsiveAppBar() {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
 
-          <Link to="/">
+          <Link to="/FrontendCompis">
             <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           </Link>
-          <Link to="/RegexEval">
+          <Link to="/FrontendCompis/RegexEval">
             <Button color="warning">RegexEval</Button>
           </Link>
-          <Link to="/YalexProcessing">
+          <Link to="/FrontendCompis/YalexProcessing">
             <Button color="warning">YalexProcessing</Button>
           </Link>
-          <Link to="/YaparProcessing">
+          <Link to="/FrontendCompis/YaparProcessing">
             <Button color="warning">YaparProcessing</Button>
           </Link>
         </Toolbar>
