@@ -29,17 +29,23 @@ function ResponsiveAppBar() {
           <Link to="/FrontendCompis/YaparProcessing">
             <Button color="warning">YaparProcessing</Button>
           </Link>
-          <DropdownButton
-            title="Contact Me"
-            options={
+          <div style={{
+            marginRight: '0',
+            width: '20%',
+          }}
+          >
+            <DropdownButton
+              title="CONTACT ME"
+              options={
             [['https://www.linkedin.com/in/diegoalonzomedinilladiggspapu', Linkedin],
               ['https://github.com/DiggsPapu', github],
-              [`mailto:diego.alonzom@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`, mail]
+              [`mailto:diego.alonzom@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`, mail],
             ]
 }
-            color="white"
-            backgroundColor="rgba(100,33,255,255)"
-          />
+              color="white"
+              backgroundColor="transparent"
+            />
+          </div>
         </Toolbar>
       </Container>
     </AppBar>
