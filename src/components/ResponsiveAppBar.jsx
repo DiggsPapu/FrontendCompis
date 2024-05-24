@@ -4,8 +4,14 @@ import {
 } from '@mui/material'
 import AdbIcon from '@mui/icons-material/Adb'
 import { Link } from 'react-router-dom'
+import DropdownButton from './dropdownButton'
+import Linkedin from '../assets/linkedin.avif'
+import mail from '../assets/mail.png'
+import github from '../assets/github.svg'
 
 function ResponsiveAppBar() {
+  const subject = 'Hi Diego'
+  const body = 'I wanted to contact you for...'
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
@@ -23,6 +29,17 @@ function ResponsiveAppBar() {
           <Link to="/FrontendCompis/YaparProcessing">
             <Button color="warning">YaparProcessing</Button>
           </Link>
+          <DropdownButton
+            title="Contact Me"
+            options={
+            [['https://www.linkedin.com/in/diegoalonzomedinilladiggspapu', Linkedin],
+              ['https://github.com/DiggsPapu', github],
+              [`mailto:diego.alonzom@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`, mail]
+            ]
+}
+            color="white"
+            backgroundColor="rgba(100,33,255,255)"
+          />
         </Toolbar>
       </Container>
     </AppBar>
