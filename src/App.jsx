@@ -12,22 +12,22 @@ function App() {
       <ResponsiveAppBar />
       <Routes>
         <Route
-          path="/FrontendCompis/RegexEval"
+          path="/RegexEval"
           exact
           element={(<RegexEval />)}
         />
         <Route
-          path="/FrontendCompis/"
+          path="/"
           exact
           element={(<Start />)}
         />
         <Route
-          path="/FrontendCompis/YalexProcessing"
+          path="/YalexProcessing"
           exact
           element={(<YalexProcessing />)}
         />
         <Route
-          path="/FrontendCompis/YaparProcessing"
+          path="/YaparProcessing"
           exact
           element={(<YaparProcessing />)}
         />
